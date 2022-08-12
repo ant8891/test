@@ -1,0 +1,27 @@
+name: Update Whitelist
+on:
+  push:
+    paths-ignore:
+  schedule:
+    - cron: '0 0 28 * *'
+
+jobs:
+  build-blocklist:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v3
+
+      - name: Build blocklist
+        uses: actions/checkout@v3
+      - run: |
+          chmod +x ./aggregator.sh
+          ./aggregator.sh -o 0.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "update whitelist"
+          git push
+          
