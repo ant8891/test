@@ -439,7 +439,7 @@ mkdir -p "$TEMP_DIR/sources"
 
 echo "[*] updating domain list..."
 fetch_domains_comments \
-                "https://raw.githubusercontent.com/anT0ny54/filterlistfinal/main/export/blocklist.txt"
+                "https://raw.githubusercontent.com/anT0ny54/filterlistfinal/main/blocklist.txt"
 
 sanitize_domain_list > "$OUT_FILE"
 
